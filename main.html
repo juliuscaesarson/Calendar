@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Calendar</title>
+
+        <link rel="stylesheet" href="main.css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class="topnav">
+            <h1>Calendar</h1>
+            <button class="btn-secondary" id="prev">Prev Month</button>
+            <button class="btn-secondary" id="next">Next Month</button>
+            <button class="btn-info" id="year"></button><button class="btn-info" id="month"></button>
+            <button class="btn-primary tag" id="togglework" value="w">Work</button>
+            <button class="btn-success tag" id="togglepersonal" value="p">Personal</button>
+            <button class="btn-warning tag" id="toggleschool" value="s">School</button>
+            <!-- Login container code from bootstrap tutorial https://www.w3schools.com/howto/howto_css_login_form_navbar.asp-->
+            <div id="login-container" class="login-container">
+                <input type="text" placeholder="Username" id="username">
+                <input type="password" placeholder="Password" id="password">
+                <button class="btn-secondary" id="login">Login</button>
+                <button class="btn-secondary" id="register">Register</button>
+                
+            </div>
+        </div>
+        <!-- Pop up form for adding events from https://www.w3schools.com/howto/howto_js_popup_form.asp-->
+        <div class="form-popup hidden" id="addForm">
+            <h1>Add Event</h1>
+            <form class="form-container">
+                <div>
+                    <label for="addtitle"><b>Title</b></label>
+                    <input type="text" placeholder="Event Title" name="title" id="addtitle" />
+                
+                    <label for="adddate"><b>Date</b></label>
+                    <input type="date" name="date" id="adddate" />
+                
+                    <label for="addtime"><b>Time</b></label>
+                    <input type="time" name="time" id="addtime" />
+                    <div id="tagForm">
+                        <label for="addwork"><b>Work</b></label>
+                        <input type="radio" name="addtag" id="addwork" value="w" required/>
+
+                        <label for="addpersonal"><b>Personal</b></label>
+                        <input type="radio" name="addtag" id="addpersonal" value="p" required />
+
+                        <label for="addschool"><b>School</b></label>
+                        <input type="radio" name="addtag" id="addschool" value="s" required/>
+                    </div>
+                    <button type="submit" class="btn-add" id="addbtn">Add Event</button>
+                    <button type="button" class="btn-add" id="cancelbtn">Close</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-popup hidden" id="editForm">
+            <h1>Edit Event</h1>
+            <form class="form-container">
+                <div>
+                    <label for="edittitle"><b>Title</b></label>
+                    <input type="text" placeholder="Event Title" name="edittitle" id="edittitle" required/>
+                
+                    <label for="editdate"><b>Date</b></label>
+                    <input type="date" name="editdate" id="editdate" required/>
+                
+                    <label for="edittime"><b>Time</b></label>
+                    <input type="time" name="edittime" id="edittime" required/>
+                    <div id="tagForm2">
+                        <label for="editwork"><b>Work</b></label>
+                        <input type="radio" name="edittag" id="editwork" value="w" required/>
+
+                        <label for="editpersonal"><b>Personal</b></label>
+                        <input type="radio" name="edittag" id="editpersonal" value="p" required />
+
+                        <label for="editwork"><b>Work</b></label>
+                        <input type="radio" name="edittag" id="editwork" value="w" required/>
+
+                        <label for="editpersonal"><b>Personal</b></label>
+                        <input type="radio" name="edittag" id="editpersonal" value="p" required />
+
+                        <label for="editschool"><b>School</b></label>
+                        <input type="radio" name="edittag" id="editschool" value="s" required />
+                    </div>
+                    <button type="submit" class="btn-add" id="editbtn">Edit Event</button>
+                    <button type="button" class="btn-add" id="cancelbtn2">Close</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-popup hidden" id="shareForm">
+            <h1>Share Event with:</h1>
+            <form class="form-container"> 
+                <div class="user-container">
+                    <div id="user-menu">
+                        <select id="user-options">
+                            
+                        </select>
+                    </div>
+
+                <button type="submit" class="btn-add" id="sharebtn">Share Event</button>
+                <button type="button" class="btn-add" id="cancelbtn3">Close</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row weeks">
+                <div class="col week">S</div>
+                <div class="col week">M</div>
+                <div class="col week">T</div>
+                <div class="col week">W</div>
+                <div class="col week">TH</div>
+                <div class="col week">F</div>
+                <div class="col week">S</div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row days 0">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <div class="row days 1">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <div class="row days 2">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <div class="row days 3">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <div class="row days 4">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+        </div>
+        <script src="main.js"></script>
+        <script src="ajax.js"></script>
+        
+    </body>
+</html>

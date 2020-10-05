@@ -1,0 +1,94 @@
+.col {
+    border: solid;
+    overflow: auto;
+    height: 180px;
+    background-color: floralwhite;
+    
+}
+.week {
+    border: solid;
+    height: 30px;
+    background-color: floralwhite;
+    
+}
+.event {
+    border: solid;
+    padding: 5px;
+    overflow:auto;
+
+}
+span {
+    display: block;
+}
+.fa {
+    float: right;
+    position: relative;
+    cursor: pointer;
+    top:5px;
+    
+}
+h1 {
+    text-align: center;
+    padding-top:10px;
+}
+/* CSS from bootstrap 4 tutorial pages */
+.topnav {
+    overflow: hidden;
+    background-color: lightblue;
+}
+.topnav button {
+    float: left;
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
+}
+.topnav .login-container {
+    float: right;
+}
+.topnav input {
+    margin-top: 1px;
+    margin-right: 2px;
+    padding: 10px;
+}
+.login-container input {
+    float: left;
+}
+
+.hidden {
+    display: none;
+}
+.form-popup {
+    background-color: #fafafa;
+    border: 3px solid black;
+    z-index: 10;
+}
+.form-container {
+    display: grid;
+    justify-content: center;
+}
+.user-container {
+    display: inline-block;
+}
+#user-menu {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.btn-add {
+    cursor: hover;
+}
+.work {
+    border-color: #007bff;
+}
+.personal {
+    border-color: #28a745;
+}
+.school {
+    border-color: #ffc107;
+}
+/* Supposed to optimize calendar grid but doesn't work perfectly */
+.container-fluid {
+    min-width: 800px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
